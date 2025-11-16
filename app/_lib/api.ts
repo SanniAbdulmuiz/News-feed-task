@@ -1,34 +1,37 @@
-// app/lib/api.ts
-import axios from 'axios'
 import { Article } from '../types'
 
-const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY
-const BASE_URL = 'https://newsapi.org/v2'
+// Fetch top headlines with optional category + search
+export async function fetchTopHeadlines(category?: string, query?: string): Promise<Article[]> {
+  const params = new URLSearchParams()
+  if (category) params.append('category', category)
+  if (query) params.append('q', query)
 
-export const fetchTopHeadlines = async (category = '', q = ''): Promise<Article[]> => {
-  const { data } = await axios.get(`${BASE_URL}/top-headlines`, {
-    params: {
-      country: 'us',
-      category: category || undefined,
-      q: q || undefined,
-      apiKey: API_KEY,
-      pageSize: 30,
-    },
+  const res = await fetch(`/api/news?${params.toString()}`, {
+    cache: 'no-store',
   })
+
+  if (!res.ok) throw new Error('Failed to fetch')
+
+  const data: { articles?: Article[] } = await res.json()
   return data.articles || []
 }
 
-// Fetch all articles (used for static generation or listing)
-export const getArticles = async (): Promise<Article[]> => {
-  return await fetchTopHeadlines()
+// Fetch all articles (used on homepage)
+export const getArticles = async (category?: string, query?: string): Promise<Article[]> => {
+  return await fetchTopHeadlines(category, query)
 }
 
 // Fetch a single article by encoded URL
-export const getArticle = async (encodedUrl: string): Promise<Article | null> => {
+export const getArticle = async (
+  encodedUrl: string,
+  category?: string,
+  query?: string
+): Promise<Article | null> => {
   const url = decodeURIComponent(encodedUrl)
-  const articles = await fetchTopHeadlines()
 
-  // Find the article that matches the URL
+  // Fetch with same filters used on the listing page
+  const articles = await fetchTopHeadlines(category, query)
+
   const article = articles.find((a) => a.url === url)
   return article || null
 }
