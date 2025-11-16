@@ -8,6 +8,8 @@ import CategoryPills from './_components/CategoryPills'
 import NewsGrid from './_components/NewsGrid'
 import Loading from './_components/Loading'
 import HeroCard from './_components/Herocard'
+import Spinner from './_components/Spinner'
+import { Suspense } from 'react'
 
 export default function HomePage() {
   const [category, setCategory] = useState('')
@@ -43,10 +45,10 @@ export default function HomePage() {
       )}
 
       {!isLoading && !isError && (
-        <>
+        <Suspense fallback={<Spinner />}>
           <HeroCard article={featured} />
           <NewsGrid articles={gridArticles as Article[]} />
-        </>
+        </Suspense>
       )}
     </div>
   )
