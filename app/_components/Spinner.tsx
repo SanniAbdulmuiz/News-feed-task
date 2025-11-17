@@ -1,5 +1,18 @@
+// app/_components/Spinner.tsx
 export default function Spinner() {
   return (
-    <div className='mx-auto my-8 w-16 aspect-square rounded-full border-8 border-primary-900 border-r-primary-200 animate-spin'></div>
+    <div className='flex items-center justify-center py-10'>
+      <div className='relative w-10 h-10'>
+        <div className='absolute inset-0 rounded-full border-2 border-[var(--foreground)]/20'></div>
+
+        <div
+          className='
+            absolute inset-0 rounded-full 
+            border-2 border-blue-600 border-t-transparent 
+            animate-spin-slow
+          '
+        ></div>
+      </div>
+    </div>
   )
 }

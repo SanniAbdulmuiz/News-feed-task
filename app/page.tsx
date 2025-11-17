@@ -46,8 +46,15 @@ export default function HomePage() {
 
       {!isLoading && !isError && (
         <Suspense fallback={<Spinner />}>
-          <HeroCard article={featured} />
-          <NewsGrid articles={gridArticles as Article[]} />
+          {/* Hero section with an ID for smooth scrolling */}
+          <section id='top-news'>
+            <HeroCard article={featured} />
+          </section>
+
+          {/* News grid section with an ID for smooth scrolling */}
+          <section id='articles' className='mt-10'>
+            <NewsGrid articles={gridArticles as Article[]} />
+          </section>
         </Suspense>
       )}
     </div>
