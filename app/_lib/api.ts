@@ -11,7 +11,10 @@ export async function fetchTopHeadlines(category?: string, query?: string): Prom
   if (query) params.append('q', query)
 
   // Absolute URL for server-side fetch
-  const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+  const base = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : 'http://localhost:3000'
+
   const url = params.toString() ? `${base}/api/news?${params.toString()}` : `${base}/api/news`
 
   const res = await fetch(url, { cache: 'no-store' })
