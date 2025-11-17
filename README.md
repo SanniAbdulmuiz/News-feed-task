@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+News Feed Task
 
-## Getting Started
+This is a Next.js project that implements a news feed page using the News API
+. It allows users to view the latest headlines, filter by category, search for news, and view individual articles.
 
-First, run the development server:
+Features
 
-```bash
+Display latest news headlines from the US.
+
+Search functionality to filter articles by keywords.
+
+Category filter to view news by specific categories (e.g., technology, sports).
+
+Loading and error states for better user experience.
+
+View a single article with image, content, and source link.
+
+Live Demo
+
+View Live Demo: https://news-feed-task-git-master-abdulmuizs-projects-717d3fda.vercel.app/
+
+Getting Started
+Prerequisites
+
+Node.js >= 18
+
+npm, yarn, pnpm, or bun
+
+Installation
+
+Clone the repository:
+
+git clone https://github.com/SanniAbdulmuiz/News-feed-task.git
+cd News-feed-task
+
+
+Install dependencies:
+
+npm install
+# or
+yarn install
+# or
+pnpm install
+
+Environment Variables
+
+Create a .env.local file in the root directory and add your News API key:
+
+NEXT_PUBLIC_NEWS_API_KEY=YOUR_NEWS_API_KEY
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+
+Running the Development Server
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open http://localhost:3000
+ in your browser. The app will automatically reload when you make changes.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Project Structure
 
-## Learn More
+app/ – main Next.js app directory
 
-To learn more about Next.js, take a look at the following resources:
+app/_lib/api.ts – API helpers for fetching news articles
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+app/types.ts – TypeScript types for articles
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+app/page.tsx – Homepage showing headlines with filters
 
-## Deploy on Vercel
+app/articles/[articleId]/page.tsx – Individual article page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Implementation Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Uses Next.js 16 (App Router) and Server Components for fetching data.
+
+Fetches news from the News API
+ through a server-side API route to hide API keys.
+
+Includes proper error handling and loading states.
+
+Fully deployed on Vercel.
