@@ -1,9 +1,8 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Header() {
-  // 1. Lazy initialization — no need to setState inside effect
   const [isDark, setIsDark] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false
 
@@ -16,13 +15,11 @@ export default function Header() {
 
   const [showNotifications, setShowNotifications] = useState(false)
 
-  // 2. Sync theme to DOM + localStorage (no setState here)
   useEffect(() => {
     document.documentElement.dataset.theme = isDark ? 'dark' : 'light'
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
   }, [isDark])
 
-  // Toggle handler
   const toggleTheme = () => setIsDark((prev) => !prev)
 
   return (
@@ -36,7 +33,6 @@ export default function Header() {
         </div>
 
         <div className='relative flex items-center gap-3 text-gray-600 dark:text-gray-300'>
-          {/* Dark mode toggle */}
           <button
             onClick={toggleTheme}
             className='p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'
@@ -44,7 +40,6 @@ export default function Header() {
             {isDark ? '☀️' : '🌙'}
           </button>
 
-          {/* Notifications dropdown */}
           <div className='relative'>
             <button
               onClick={() => setShowNotifications(!showNotifications)}

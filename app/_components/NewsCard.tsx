@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { Article } from '../types'
@@ -18,7 +17,6 @@ export default function NewsCard({ article }: { article: Article }) {
       onClick={handleClick}
       className='cursor-pointer group overflow-hidden rounded-2xl shadow-md bg-white transition-shadow hover:shadow-xl hover:scale-[1.02] duration-300'
     >
-      {/* Image */}
       <div className='relative w-full h-48 md:h-56'>
         {article.urlToImage ? (
           <Image
@@ -33,7 +31,6 @@ export default function NewsCard({ article }: { article: Article }) {
         <div className='absolute inset-0 bg-linear-to-b from-transparent via-black/30 to-black/60' />
       </div>
 
-      {/* Content */}
       <div className='p-4 md:p-6'>
         <h3 className='text-lg md:text-xl font-bold text-gray-900 line-clamp-2 mb-2'>
           {article.title}

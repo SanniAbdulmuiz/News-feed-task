@@ -18,28 +18,26 @@ export async function GET(req: Request) {
 
     return NextResponse.json(data, {
       headers: {
-        'Access-Control-Allow-Origin': '*', // replace * with your frontend domain in production
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET,OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type',
       },
     })
   } catch (error: unknown) {
-    const message =
-      error instanceof Error ? error.message : 'Unknown server error'
-    return NextResponse.json(
-      { status: 'error', message },
-      { status: 500 }
-    )
+    const message = error instanceof Error ? error.message : 'Unknown server error'
+    return NextResponse.json({ status: 'error', message }, { status: 500 })
   }
 }
 
-// Handle preflight requests
 export async function OPTIONS() {
-  return NextResponse.json({}, {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    },
-  })
+  return NextResponse.json(
+    {},
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+    }
+  )
 }

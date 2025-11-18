@@ -1,14 +1,10 @@
 import { Article } from '../types'
 
-/**
- * Fetch top headlines from API with optional category and search query.
- */
 export async function fetchTopHeadlines(category?: string, query?: string): Promise<Article[]> {
   const params = new URLSearchParams()
   if (category) params.append('category', category)
   if (query) params.append('q', query)
 
-  // Use your frontend domain / base URL
   const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
   const url = params.toString() ? `${base}/api/news?${params.toString()}` : `${base}/api/news`
 
@@ -22,16 +18,10 @@ export async function fetchTopHeadlines(category?: string, query?: string): Prom
   return data.articles || []
 }
 
-/**
- * Fetch all articles (for homepage)
- */
 export const getArticles = async (category?: string, query?: string): Promise<Article[]> => {
   return fetchTopHeadlines(category, query)
 }
 
-/**
- * Fetch a single article by URL (encoded as articleId)
- */
 export const getArticle = async (
   articleId: string,
   category?: string,

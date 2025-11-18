@@ -1,12 +1,11 @@
 'use client'
-import React from 'react'
 
 export default function Footer() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
     if (!element) return
 
-    const headerOffset = 100 // adjust for your sticky header height
+    const headerOffset = 100
     const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
     const offsetPosition = elementPosition - headerOffset
 

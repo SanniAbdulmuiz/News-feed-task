@@ -8,7 +8,6 @@ type Props = {
 }
 
 export default async function ArticlePage(props: Props) {
-  // Turbopack requires this: params may be a Promise
   const { articleId } = await props.params
 
   const article: Article | null = await getArticle(articleId)

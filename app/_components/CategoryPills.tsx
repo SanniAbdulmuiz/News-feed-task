@@ -1,6 +1,4 @@
-// app/components/CategoryPills.tsx
 'use client'
-import React from 'react'
 
 const categories = [
   { id: '', label: 'All' },

@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Article } from './types'
 import { fetchTopHeadlines } from './_lib/api'
@@ -46,12 +46,10 @@ export default function HomePage() {
 
       {!isLoading && !isError && (
         <Suspense fallback={<Spinner />}>
-          {/* Hero section with an ID for smooth scrolling */}
           <section id='top-news'>
             <HeroCard article={featured} />
           </section>
 
-          {/* News grid section with an ID for smooth scrolling */}
           <section id='articles' className='mt-10'>
             <NewsGrid articles={gridArticles as Article[]} />
           </section>

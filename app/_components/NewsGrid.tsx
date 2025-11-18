@@ -1,4 +1,3 @@
-// app/components/NewsGrid.tsx
 'use client'
 import { Article } from '../types'
 import NewsCard from './NewsCard'
