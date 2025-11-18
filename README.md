@@ -17,7 +17,7 @@ View a single article with image, content, and source link.
 
 Live Demo
 
-View Live Demo: https://news-feed-task-git-master-abdulmuizs-projects-717d3fda.vercel.app/
+View Live Demo: https://news-feed-task.vercel.app/
 
 Getting Started
 Prerequisites
